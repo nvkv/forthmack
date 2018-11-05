@@ -54,6 +54,57 @@ struct Multiply: Word {
     }
 }
 
+struct Gt: Word {
+    let name = ">"
+    let isBuiltin = true
+    let source: [Val] = []
+
+    func run(stack: inout Array<Val>) throws {
+        try binaryNumOperation(stack: &stack, op: { a, b in b > a ? Decimal(1) : Decimal(0) })
+    }
+}
+
+struct Lt: Word {
+    let name = "<"
+    let isBuiltin = true
+    let source: [Val] = []
+
+    func run(stack: inout Array<Val>) throws {
+        try binaryNumOperation(stack: &stack, op: { a, b in b < a ? Decimal(1) : Decimal(0) })
+    }
+}
+
+struct Gte: Word {
+    let name = ">="
+    let isBuiltin = true
+    let source: [Val] = []
+
+    func run(stack: inout Array<Val>) throws {
+        try binaryNumOperation(stack: &stack, op: { a, b in b >= a ? Decimal(1) : Decimal(0) })
+    }
+}
+
+struct Lte: Word {
+    let name = "<="
+    let isBuiltin = true
+    let source: [Val] = []
+
+    func run(stack: inout Array<Val>) throws {
+        try binaryNumOperation(stack: &stack, op: { a, b in b <= a ? Decimal(1) : Decimal(0) })
+    }
+}
+
+
+struct Eq: Word {
+    let name = "="
+    let isBuiltin = true
+    let source: [Val] = []
+
+    func run(stack: inout Array<Val>) throws {
+        try binaryNumOperation(stack: &stack, op: { a, b in b == a ? Decimal(1) : Decimal(0) })
+    }
+}
+
 
 struct Dot: Word {
     let name = "."

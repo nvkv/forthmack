@@ -1,25 +1,7 @@
 import Foundation
 import LineNoise
 
-enum Val: Equatable {
-    case Word(String)
-    case Number(Decimal)
-    case String(String)
-    case Comment
 
-    static func ==(left: Val, right: Val) -> Bool {
-        switch (left, right) {
-        case (let .Word(w1), let .Word(w2)):
-            return w1 == w2
-        case (let .String(s1), let .String(s2)):
-            return s1 == s2
-        case (let .Number(n1), let .Number(n2)):
-            return n1 == n2
-        default:
-            return false
-        }
-    }
-}
 
 func nextToken(input: String) -> (Val, String) {
     let whitespace = CharacterSet.whitespacesAndNewlines
@@ -72,7 +54,7 @@ func lexer(input: String) throws -> Array<Val> {
 // print(try! lexer(input: ": default-one \"hello world\" ;"))
 // print(try! lexer(input: ": no-more \"Hit the road Jack\" 2 times . ;"))
 // print(try! lexer(input: "\"Hello Fucking Forth Interpreter!\""))
-// print(try! lexer(input: ": no-more\t(n -- n)\n\t\"Мама, чому я такой тупой?\" 2 times . ;"))
+//print(try! group(source: lexer(input: ": no-more\t(n -- n)\n\t\"Мама, чому я такой тупой?\" 2 times . ;")))
 
 // let multiline = """
 // \\ Views:
@@ -107,7 +89,12 @@ var dict: [String: Word] = [
   "swap": Swap(),
   "drop": Drop(),
   "over": Over(),
-  "rot": Rot()
+  "rot": Rot(),
+  ">": Gt(),
+  "<": Lt(),
+  ">=": Gte(),
+  "<=": Lte(),
+  "=": Eq()
 ]
 
 let ln = LineNoise()
