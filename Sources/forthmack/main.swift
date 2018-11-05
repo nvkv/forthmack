@@ -113,8 +113,8 @@ var dict: [String: Word] = [
 let ln = LineNoise()
 while true {
     do {
-	      let input = try ln.getLine(prompt: "> ")
-	      ln.addHistory(input)
+        let input = try ln.getLine(prompt: "> ")
+        ln.addHistory(input)
         print()
         let source = try! lexer(input: input)
         print(try run(source: source, dict: &dict))
