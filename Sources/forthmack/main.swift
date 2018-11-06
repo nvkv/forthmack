@@ -25,7 +25,8 @@ var dict: [String: Word] = [
   "<": Lt(),
   ">=": Gte(),
   "<=": Lte(),
-  "=": Eq()
+  "=": Eq(),
+  "<-": Send()
 ]
 
 let ln = LineNoise()

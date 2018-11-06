@@ -208,3 +208,23 @@ struct Load: Word {
         }
     }
 }
+
+
+struct Send: Word {
+    let name = "<-"
+    let isBuiltin = true
+    let source: [Val] = []
+
+    func run(stack: inout Array<Val>) throws {
+        if let msg = stack.popLast(), let obj = stack.popLast() {
+            switch (obj, msg) {
+            case (let .String(object), let .String(message)):
+                print(try sendMessage(obj: NSString(string: object), selector: message))
+            case (let .Number(object), let .String(message)):
+                print(try sendMessage(obj: NSDecimalNumber(decimal: object), selector: message))
+            default:
+                throw InterpreterError.RuntimeError("Doesn't work at all :(")
+            }
+        }
+    }
+}
