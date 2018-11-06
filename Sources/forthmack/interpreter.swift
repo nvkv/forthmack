@@ -73,7 +73,6 @@ func group(source: [Val]) throws -> [Val] {
             }
 
         case .Word("do"):
-            print(groupedSource)
             if let from = groupedSource.popLast(), let to = groupedSource.popLast() {
                 if let end = source[i ..< source.count].firstIndex(of: .Word("loop")) {
                     let body = Array(source[i + 1 ..< end])
